@@ -185,9 +185,10 @@ class Calculator extends React.Component {
         for (const expression of list) {
             const [
                 firstNum,
-                operator,
                 secondNum
-            ] = expression.split("")
+            ] = expression.split(/[/*\-+]/)
+            let operator = expression.match(/[/*\-+]/)[0];
+
             let state = {
                 firstNum: firstNum,
                 secondNum: secondNum,
