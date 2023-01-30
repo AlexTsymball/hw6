@@ -61,7 +61,6 @@ class Calculator extends React.Component {
             secondNum,
             operator
         } = state;
-        const history = this.state.history;
         const current = firstNum + operator + secondNum;
         let result;
         switch (operator) {
@@ -81,10 +80,9 @@ class Calculator extends React.Component {
         if (result === Infinity || isNaN(result)) {
             result = 'Error';
         }
-        history.push(current + '=' + result)
-        this.setState({
-            history: history,
-        })
+        this.setState(state => ({
+            history: [...state.history, current + '=' + result],
+        }))
         return result;
     }
 
